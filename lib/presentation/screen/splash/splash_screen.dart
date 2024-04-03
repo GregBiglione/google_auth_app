@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_auth_app/presentation/resource/image_manager.dart';
+import 'package:google_auth_app/presentation/resource/string_manager.dart';
+import 'package:google_auth_app/presentation/resource/style_manager.dart';
+import 'package:google_auth_app/presentation/resource/value_manager.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../resource/color_manager.dart';
 
@@ -13,14 +18,52 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.black,
-      body: const Center(
-        child: Text(
-          "Splash screen",
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-          ),
+      backgroundColor: ColorManager.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Image -----------------------------------------------------------
+            Image.asset(
+              ImageManager.splashLogo,
+              fit: BoxFit.cover,
+              width: ValueManager.v80,
+              height: ValueManager.v80,
+            ),
+            const SizedBox(
+              height: ValueManager.v20,
+            ),
+            // Percent Indicator -----------------------------------------------
+            Padding(
+              padding: EdgeInsets.only(
+                left: (MediaQuery.of(context).size.width - ValueManager.v150) / 2,
+                right: (MediaQuery.of(context).size.width - ValueManager.v150) / 2,
+              ),
+              child: LinearPercentIndicator(
+                animation: true,
+                animationDuration: 2500,
+                width: ValueManager.v150,
+                lineHeight: ValueManager.v10,
+                percent: 1,
+                backgroundColor: ColorManager.disableColor,
+                progressColor: ColorManager.googleTextColor,
+                barRadius: const Radius.circular(
+                  ValueManager.v30,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: ValueManager.v20,
+            ),
+            // Title -----------------------------------------------------------
+            Text(
+              StringManager.appName,
+              style: getBoldStyle(
+                fontSize: ValueManager.v20,
+                color: ColorManager.googleTextColor,
+              ),
+            ),
+          ],
         ),
       ),
     );

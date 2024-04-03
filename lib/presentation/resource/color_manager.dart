@@ -7,6 +7,7 @@ class ColorManager {
   static Color white = HexColor.fromHex("#FFFFFF");
   static Color black = HexColor.fromHex("#000000");
   static Color googleBorderColor = HexColor.fromHex("#B4B6B6");
+  static Color googleTextColor = HexColor.fromHex("#7F7F7F");
   static Color disableColor = HexColor.fromHex("#B5B3B3");
 }
 

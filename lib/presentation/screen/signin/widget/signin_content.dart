@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_auth_app/app/constant.dart';
 import 'package:google_auth_app/presentation/resource/string_manager.dart';
 import 'package:google_auth_app/presentation/resource/value_manager.dart';
+import 'package:google_auth_app/presentation/widget/padding_widget.dart';
+import 'package:google_auth_app/presentation/widget/title_widget.dart';
 import '../../../resource/color_manager.dart';
 import '../../../resource/font_manager.dart';
 import '../../../resource/image_manager.dart';
@@ -24,36 +26,20 @@ class _SignInContentState extends State<SignInContent> {
   // All content
   //----------------------------------------------------------------------------
 
-  Widget _getContentWidget() => Padding(
-    padding: const EdgeInsets.only(
-      left: ValueManager.v16,
-      right: ValueManager.v16,
-    ),
-    child: Column(
+  Widget _getContentWidget() => PaddingWidget(
+    widget: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _signInTitleWidget(),
+        // Title ---------------------------------------------------------------
+        const TitleWidget(
+          title: StringManager.signInTitle,
+        ),
         const SizedBox(
           height: ValueManager.v30,
         ),
         _googleButtonWidget(),
       ],
-    ),
-  );
-
-  //----------------------------------------------------------------------------
-  // Title
-  //----------------------------------------------------------------------------
-
-  Widget _signInTitleWidget() => Padding(
-    padding: const EdgeInsets.only(
-      left: ValueManager.v16,
-      right: ValueManager.v16,
-    ),
-    child: Text(
-      StringManager.signInTitle,
-      style: Theme.of(context).textTheme.displayMedium,
     ),
   );
 

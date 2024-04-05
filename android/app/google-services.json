@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654429228548",
+    "project_id": "authapp-712db",
+    "storage_bucket": "authapp-712db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654429228548:android:ddef737bb270ffc34def51",
+        "android_client_info": {
+          "package_name": "com.example.google_auth_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJXxK7t14plJW6j1zB_F-doyg1bJ8S5gI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

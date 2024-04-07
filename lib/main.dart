@@ -1,14 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_auth_app/firebase_options.dart';
 import 'package:google_auth_app/presentation/resource/route_manager.dart';
 import 'package:google_auth_app/presentation/resource/theme_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   runApp(const MyApp());
 }
 

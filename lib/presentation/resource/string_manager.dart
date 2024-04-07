@@ -5,4 +5,7 @@ class StringManager {
   // Sign in screen ------------------------------------------------------------
   static const String signInTitle = "Sign in";
   static const String googleButtonTitle = "Sign in with Google";
+
+  // Error message -------------------------------------------------------------
+  static const String unknownError = "Unknown error";
 }

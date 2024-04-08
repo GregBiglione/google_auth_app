@@ -26,7 +26,9 @@ class SignInScreen extends StatelessWidget {
 
           if(response is Success) {
             logger.i("User data ${response.data}");
-            goToHomeScreen(context);
+            if (response.data != null) {
+              goToHomeScreen(context);
+            }
           }
           else if(response is Loading) {
             logger.w("Loading");

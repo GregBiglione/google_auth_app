@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:google_auth_app/app/constant.dart';
 import 'package:google_auth_app/presentation/resource/string_manager.dart';
 import 'package:google_auth_app/presentation/resource/value_manager.dart';
+import 'package:google_auth_app/presentation/screen/signin/signin_viewmodel.dart';
 import 'package:google_auth_app/presentation/widget/google_button_widget.dart';
 import 'package:google_auth_app/presentation/widget/padding_widget.dart';
 import 'package:google_auth_app/presentation/widget/title_widget.dart';
 
 class SignInContent extends StatefulWidget {
-  const SignInContent({super.key});
+  final SignInViewModel viewModel;
+
+  const SignInContent({super.key, required this.viewModel});
 
   @override
   State<SignInContent> createState() => _SignInContentState();
@@ -38,7 +40,7 @@ class _SignInContentState extends State<SignInContent> {
         // Google button -------------------------------------------------------
         GoogleButtonWidget(
           onPressed: () {
-            logger.i("Google button clicked");
+            widget.viewModel.googleSignIn();
           },
         ),
       ],

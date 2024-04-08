@@ -46,6 +46,7 @@ dependencies:
   injectable_generator: ^2.4.2
   provider: ^6.1.2
   flutter_spinkit: ^5.2.1
+  toastification: ^1.2.1
 
 dev_dependencies:
   flutter_test:

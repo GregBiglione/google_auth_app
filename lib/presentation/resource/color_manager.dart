@@ -9,6 +9,7 @@ class ColorManager {
   static Color googleBorderColor = HexColor.fromHex("#B4B6B6");
   static Color googleTextColor = HexColor.fromHex("#7F7F7F");
   static Color disableColor = HexColor.fromHex("#B5B3B3");
+  static Color error = HexColor.fromHex("#FF021C");
 }
 
 extension HexColor on Color {

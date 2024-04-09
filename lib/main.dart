@@ -3,6 +3,7 @@ import 'package:google_auth_app/app/di/injection.dart';
 import 'package:google_auth_app/domain/usecase/auth/auth_usecase.dart';
 import 'package:google_auth_app/presentation/resource/route_manager.dart';
 import 'package:google_auth_app/presentation/resource/theme_manager.dart';
+import 'package:google_auth_app/presentation/screen/home/home_viewmodel.dart';
 import 'package:google_auth_app/presentation/screen/signin/signin_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => SignInViewModel(getIt<AuthUseCase>()),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HomeViewModel(getIt<AuthUseCase>()),
         ),
       ],
       child: MaterialApp(

@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: ColorManager.primary,
         title: Text(
           StringManager.homeTitle,

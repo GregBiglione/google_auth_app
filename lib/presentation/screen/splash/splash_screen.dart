@@ -9,6 +9,8 @@ import 'package:google_auth_app/presentation/resource/style_manager.dart';
 import 'package:google_auth_app/presentation/resource/value_manager.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../../../app/app_preferences.dart';
+import '../../../app/di/injection.dart';
 import '../../resource/color_manager.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,16 +22,27 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
+  final AppPreferences _appPreferences = getIt<AppPreferences>();
 
   //----------------------------------------------------------------------------
-  // Go to Sign In Screen
+  // Go to SignIn/Home Screen
   //----------------------------------------------------------------------------
 
   _goToSignInScreen() {
-    Navigator.pushReplacementNamed(
-      context,
-      Routes.signInRoute,
-    );
+    _appPreferences.isUserLogged().then((value) {
+      if(value == false) {
+        Navigator.pushReplacementNamed(
+          context,
+          Routes.signInRoute,
+        );
+      }
+      else {
+        Navigator.pushReplacementNamed(
+          context,
+          Routes.homeRoute,
+        );
+      }
+    });
   }
 
   //----------------------------------------------------------------------------

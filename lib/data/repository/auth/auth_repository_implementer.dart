@@ -37,4 +37,7 @@ class AuthRepositoryImplementer implements AuthRepository {
 
     return Success(user);
   }
+
+  @override
+  User? get user => _firebaseAuth.currentUser;
 }

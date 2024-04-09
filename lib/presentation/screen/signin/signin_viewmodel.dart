@@ -24,7 +24,7 @@ class SignInViewModel extends ChangeNotifier {
     // Loading -----------------------------------------------------------------
     _responseController.add(Loading());
     // Sign in -----------------------------------------------------------------
-    final data = await _authUseCase.googleSignInUseCase.launch();
+    final data = await _authUseCase.googleLogInUseCase.launch();
     _responseController.add(data);
   }
 }

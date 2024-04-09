@@ -25,7 +25,7 @@ class SignInScreen extends StatelessWidget {
           final response = snapshot.data;
 
           if(response is Success) {
-            logger.i("User data ${response.data}");
+            //logger.i("User data ${response.data}");
             if (response.data != null) {
               goToHomeScreen(context);
             }

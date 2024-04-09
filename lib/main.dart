@@ -6,18 +6,26 @@ import 'package:google_auth_app/presentation/resource/theme_manager.dart';
 import 'package:google_auth_app/presentation/screen/signin/signin_viewmodel.dart';
 import 'package:provider/provider.dart';
 
+import 'app/constant.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  runApp(const MyApp());
+  runApp(MyApp(getIt<AuthUseCase>()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AuthUseCase _authUseCase;
+
+  const MyApp(this._authUseCase, {super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final sessionId = _authUseCase.userSessionUseCase.userSession?.uid ?? "Not connected";
+
+    logger.i("User session id $sessionId");
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(

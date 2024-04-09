@@ -21,4 +21,12 @@ class AppPreferences {
   Future<bool> isUserLogged() async {
     return _sharedPreferences.getBool(IS_USER_LOGGED) ?? false;
   }
+
+  //----------------------------------------------------------------------------
+  // Remove preferences for user logged
+  //----------------------------------------------------------------------------
+
+  Future<void> logout() async {
+    _sharedPreferences.remove(IS_USER_LOGGED);
+  }
 }

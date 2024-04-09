@@ -4,5 +4,6 @@ import '../../utils/state_render.dart';
 
 abstract class AuthRepository {
   User? get user;
-  Future<StateRender> googleSignIn();
+  Future<StateRender> googleLogIn();
+  Future<void> googleLogOut();
 }

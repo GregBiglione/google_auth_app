@@ -9,4 +9,7 @@ class StringManager {
   // Error message -------------------------------------------------------------
   static const String unknownError = "Unknown error";
   static const String error = "Error: ";
+
+  // Home screen ---------------------------------------------------------------
+  static const String homeTitle = "Hello ";
 }

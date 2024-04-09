@@ -7,6 +7,7 @@ import 'package:google_auth_app/presentation/resource/string_manager.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final AppPreferences _appPreferences = getIt<AppPreferences>();
+final GoogleSignIn googleSignIn = GoogleSignIn();
 
 class AuthRepositoryImplementer implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
@@ -14,8 +15,7 @@ class AuthRepositoryImplementer implements AuthRepository {
   AuthRepositoryImplementer(this._firebaseAuth);
 
   @override
-  Future<StateRender> googleSignIn() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
+  Future<StateRender> googleLogIn() async {
     final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
     User? user;
 
@@ -45,4 +45,10 @@ class AuthRepositoryImplementer implements AuthRepository {
 
   @override
   User? get user => _firebaseAuth.currentUser;
+
+  @override
+  Future<void> googleLogOut() async {
+    _appPreferences.logout();
+    await googleSignIn.signOut();
+  }
 }

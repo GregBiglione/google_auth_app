@@ -130,10 +130,7 @@ class __$$UserDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserDataImpl implements _UserData {
   const _$UserDataImpl(
-      {this.uid = "",
-      this.name = "",
-      this.age = "23",
-      this.city = "Los Angeles"});
+      {this.uid = "", this.name = "", this.age = "", this.city = ""});
 
   factory _$UserDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDataImplFromJson(json);

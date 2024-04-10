@@ -10,8 +10,8 @@ _$UserDataImpl _$$UserDataImplFromJson(Map<String, dynamic> json) =>
     _$UserDataImpl(
       uid: json['uid'] as String? ?? "",
       name: json['name'] as String? ?? "",
-      age: json['age'] as String? ?? "23",
-      city: json['city'] as String? ?? "Los Angeles",
+      age: json['age'] as String? ?? "",
+      city: json['city'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>

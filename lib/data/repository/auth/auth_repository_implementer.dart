@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_auth_app/app/app_preferences.dart';
 import 'package:google_auth_app/app/constant.dart';
 import 'package:google_auth_app/app/di/injection.dart';
+import 'package:google_auth_app/domain/model/user_data.dart';
 import 'package:google_auth_app/domain/repository/auth/auth_repository.dart';
 import 'package:google_auth_app/domain/utils/state_render.dart';
 import 'package:google_auth_app/presentation/resource/string_manager.dart';
@@ -14,9 +15,11 @@ final GoogleSignIn googleSignIn = GoogleSignIn();
 
 class AuthRepositoryImplementer implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
+  final FirebaseFirestore _firestore;
   final CollectionReference _usersCollection;
 
-  AuthRepositoryImplementer(this._firebaseAuth, @Named(USER) this._usersCollection);
+  AuthRepositoryImplementer(this._firebaseAuth, this._firestore,
+      @Named(USER) this._usersCollection);
 
   @override
   Future<StateRender> googleLogIn() async {
@@ -38,6 +41,24 @@ class AuthRepositoryImplementer implements AuthRepository {
         _appPreferences.setUserLogged();
 
         user = userCredential.user;
+
+        // Firestore -----------------------------------------------------------
+
+        final DocumentSnapshot ds = await _firestore
+            .collection(USER)
+            .doc(user?.uid)
+            .get();
+
+        if(!ds.exists) {
+          UserData userData = UserData(
+            uid: user!.uid,
+            name: user.displayName!,
+            age: "22",
+            city: "Los Angeles",
+          );
+
+          await _usersCollection.doc(userData.uid).set(userData.toJson());
+        }
       }
       on FirebaseAuthException catch (e) {
         return Error(e.message ?? StringManager.unknownError);

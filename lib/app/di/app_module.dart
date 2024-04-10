@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_auth_app/app/constant.dart';
 import 'package:google_auth_app/data/repository/auth/auth_repository_implementer.dart';
 import 'package:google_auth_app/domain/repository/auth/auth_repository.dart';
 import 'package:google_auth_app/domain/usecase/auth/auth_usecase.dart';
@@ -17,10 +19,22 @@ abstract class AppModule {
   @injectable
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
 
+  @injectable
+  FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
+
   // Repository ----------------------------------------------------------------
 
   @injectable
-  AuthRepository get authRepository => AuthRepositoryImplementer(firebaseAuth);
+  AuthRepository get authRepository => AuthRepositoryImplementer(
+    firebaseAuth,
+    usersCollection,
+  );
+
+  // Collection ----------------------------------------------------------------
+  
+  @Named(USER)
+  @injectable
+  CollectionReference get usersCollection => firebaseFirestore.collection(USER);
 
   // Use case ------------------------------------------------------------------
 

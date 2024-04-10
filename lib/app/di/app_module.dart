@@ -2,11 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_auth_app/app/constant.dart';
 import 'package:google_auth_app/data/repository/auth/auth_repository_implementer.dart';
+import 'package:google_auth_app/data/repository/user/user_repository_implementer.dart';
 import 'package:google_auth_app/domain/repository/auth/auth_repository.dart';
+import 'package:google_auth_app/domain/repository/user/user_repository.dart';
 import 'package:google_auth_app/domain/usecase/auth/auth_usecase.dart';
 import 'package:google_auth_app/domain/usecase/auth/google_login_usecase.dart';
 import 'package:google_auth_app/domain/usecase/auth/google_logout_usecase.dart';
 import 'package:google_auth_app/domain/usecase/auth/user_session_usecase.dart';
+import 'package:google_auth_app/domain/usecase/user/get_user_usecase.dart';
+import 'package:google_auth_app/domain/usecase/user/user_usecase.dart';
 import 'package:injectable/injectable.dart';
 
 import 'firebase_service.dart';
@@ -30,6 +34,9 @@ abstract class AppModule {
     firebaseFirestore,
     usersCollection,
   );
+  
+  @injectable
+  UserRepository get userRepository => UserRepositoryImplementer(usersCollection);
 
   // Collection ----------------------------------------------------------------
   
@@ -44,5 +51,10 @@ abstract class AppModule {
     userSessionUseCase: UserSessionUseCase(authRepository),
     googleLogInUseCase: GoogleLogInUseCase(authRepository), 
     googleLogOutUseCase: GoogleLogOutUseCase(authRepository),
+  );
+  
+  @injectable
+  UserUseCase get userUseCase => UserUseCase(
+    getUserUseCase: GetUserUseCase(userRepository),
   );
 }

@@ -79,6 +79,7 @@ flutter:
   # assets:
   assets:
     - assets/images/google_auth_app_logo.png
+    - assets/images/default_avatar.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

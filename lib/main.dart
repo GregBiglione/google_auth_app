@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_auth_app/app/di/injection.dart';
 import 'package:google_auth_app/domain/usecase/auth/auth_usecase.dart';
+import 'package:google_auth_app/domain/usecase/user/user_usecase.dart';
 import 'package:google_auth_app/presentation/resource/route_manager.dart';
 import 'package:google_auth_app/presentation/resource/theme_manager.dart';
 import 'package:google_auth_app/presentation/screen/home/home_viewmodel.dart';
@@ -33,7 +34,10 @@ class MyApp extends StatelessWidget {
           create: (context) => SignInViewModel(getIt<AuthUseCase>()),
         ),
         ChangeNotifierProvider(
-          create: (context) => HomeViewModel(getIt<AuthUseCase>()),
+          create: (context) => HomeViewModel(
+            getIt<AuthUseCase>(),
+            getIt<UserUseCase>(),
+          ),
         ),
       ],
       child: MaterialApp(

@@ -1,5 +1,6 @@
 // Error toast -----------------------------------------------------------------
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_auth_app/app/di/injection.dart';
 import 'package:google_auth_app/domain/usecase/auth/auth_usecase.dart';
@@ -21,11 +22,12 @@ void errorToast(BuildContext context, String message) => toastification.show(
 
 // Go to home screen -----------------------------------------------------------
 
-void goToHomeScreen(BuildContext context) => WidgetsBinding.instance
+void goToHomeScreen(BuildContext context, User user) => WidgetsBinding.instance
     .addPostFrameCallback((timeStamp) {
       Navigator.pushReplacementNamed(
         context,
         Routes.homeRoute,
+        arguments: user,
       );
 });
 

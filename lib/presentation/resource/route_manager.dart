@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_auth_app/presentation/resource/color_manager.dart';
 import 'package:google_auth_app/presentation/resource/string_manager.dart';
@@ -19,7 +20,11 @@ class RouteGenerator {
       case Routes.signInRoute:
         return MaterialPageRoute(builder: (_) => const SignInScreen());
       case Routes.homeRoute:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        User args = routeSettings.arguments as User;
+        User user = args;
+        return MaterialPageRoute(builder: (_) => HomeScreen(
+          user: user,),
+        );
       default:
         return undefinedRoute();
     }

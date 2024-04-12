@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_auth_app/app/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,5 +29,24 @@ class AppPreferences {
 
   Future<void> logout() async {
     _sharedPreferences.remove(IS_USER_LOGGED);
+    _sharedPreferences.remove(USER_PHOTO);
+  }
+
+  //----------------------------------------------------------------------------
+  // Set preferences for user auth
+  //----------------------------------------------------------------------------
+
+  Future<void> setPhoto(User user) async {
+    String? photo = user.photoURL;
+
+    _sharedPreferences.setString(USER_PHOTO, photo!);
+  }
+
+  //----------------------------------------------------------------------------
+  // Get preferences for user auth
+  //----------------------------------------------------------------------------
+
+  Future<String?> getPhoto() async {
+    return _sharedPreferences.getString(USER_PHOTO) ?? "";
   }
 }

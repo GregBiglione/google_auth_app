@@ -41,17 +41,18 @@ class AuthRepositoryImplementer implements AuthRepository {
         _appPreferences.setUserLogged();
 
         user = userCredential.user;
+        _appPreferences.setPhoto(user!);
 
         // Firestore -----------------------------------------------------------
 
         final DocumentSnapshot ds = await _firestore
             .collection(USER)
-            .doc(user?.uid)
+            .doc(user.uid)
             .get();
 
         if(!ds.exists) {
           UserData userData = UserData(
-            uid: user!.uid,
+            uid: user.uid,
             name: user.displayName!,
             age: "22",
             city: "Los Angeles",

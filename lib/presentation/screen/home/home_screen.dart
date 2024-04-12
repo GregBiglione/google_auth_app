@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -15,9 +14,7 @@ import 'package:google_auth_app/presentation/screen/home/widget/home_content.dar
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  final User user;
-
-  const HomeScreen({super.key, required this.user});
+  const HomeScreen({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +80,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: ColorManager.black,
-      body: HomeContent(user: user,),
+      body: const HomeContent(),
     );
   }
 }
